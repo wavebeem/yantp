@@ -153,11 +153,20 @@ body {
 
 #top-sites .top-site {
     display: block;
-    padding: 3px;
+    padding: 4px 10px 8px;
+    border-radius: 6px;
+    border: 1px solid transparent;
 }
 
 #top-sites .top-site:hover {
-    text-decoration: underline;
+    /* text-decoration: underline;*/
+
+    /* background-color: rgba(0, 0, 0, 0.05);*/
+    /* border-color:     rgba(0, 0, 0, 0.05);*/
+
+    background-color: rgba(255, 255, 255, 0.85);
+    border-color:     rgba(  0,   0,   0, 0.15);
+    box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.05);
 }
 
 #nav-bar a,
