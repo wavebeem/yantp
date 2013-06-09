@@ -3,6 +3,7 @@
     "version" : "1.0",
     "name" : "New Tab Page",
     "permissions" : [
+        "topSites",
         "bookmarks",
         "chrome://favicon/"
     ],
