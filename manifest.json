@@ -1,0 +1,12 @@
+{
+    "manifest_version" : 2,
+    "version" : "1.0",
+    "name" : "New Tab Page",
+    "permissions" : [
+        "bookmarks",
+        "chrome://favicon/"
+    ],
+    "chrome_url_overrides" : {
+        "newtab" : "ntp.html"
+    }
+}
