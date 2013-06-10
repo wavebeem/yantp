@@ -123,40 +123,7 @@ var bookmarkIds = {
     bar: "1",
 }
 
-var tabHandlers = {
-    "bookmarks": function() {
-        localStorage.last_tab   = "bookmarks";
-        bookmarks.style.display = "inline-block";
-        others   .style.display = "none";
-        topSites .style.display = "none";
-
-        ID("show-bookmarks").classList.add("current");
-        ID("show-top-sites").classList.remove("current");
-        ID("show-others"   ).classList.remove("current");
-    },
-
-    "top-sites": function() {
-        localStorage.last_tab   = "top-sites";
-        topSites .style.display = "inline-block";
-        others   .style.display = "none";
-        bookmarks.style.display = "none";
-
-        ID("show-top-sites").classList.add("current");
-        ID("show-bookmarks").classList.remove("current");
-        ID("show-others"   ).classList.remove("current");
-    },
-
-    "others": function() {
-        localStorage.last_tab   = "others";
-        others   .style.display = "inline-block";
-        topSites .style.display = "none";
-        bookmarks.style.display = "none";
-
-        ID("show-others"   ).classList.add("current");
-        ID("show-bookmarks").classList.remove("current");
-        ID("show-top-sites").classList.remove("current");
-    },
-};
+var tabHandlers = {};
 
 var tabs = {
     "bookmarks" : null,

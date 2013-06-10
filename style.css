@@ -1,6 +1,6 @@
 html {
     min-width: 500px;
-    background-color: #eee;
+    background-color: #ddd;
     color: #444;
     text-align: center;
     font-size: 16px;
@@ -20,7 +20,7 @@ h1 {
 
 body {
     text-align: center;
-    margin: 0px 20px;
+    margin: 0px;
 }
 
 #container div {
@@ -31,27 +31,19 @@ body {
     text-align: left;
 
     display: inline-block;
+
+    max-width: 700px;
 }
 
 #container {
-    background-color: #f8f8f8;
+    background-color: #eee;
     text-align: center;
 
-    max-width: 700px;
-    min-width: 500px;
-
-    display: inline-block;
+    display: block;
 
     margin: 0px auto;
 
-    border: 0px solid rgba(0, 0, 0, 0.20);
-    border-top-color: rgba(0, 0, 0, 0.15);
-
-    border-width: 1px;
-
-    box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.03);
-
-    border-radius: 4px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.20);
 }
 
 .node,
@@ -94,8 +86,8 @@ body {
     vertical-align: middle;
     background-color: #fff;
     padding: 3px;
-    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.60);
-    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    border-radius: 4px;
 }
 
 .title {
@@ -155,15 +147,20 @@ body {
 
 #nav-bar {
     padding: 1px;
+    margin: 0px -20px;
+    background-color: #fafafa;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.20);
 }
 
 #nav-bar a {
     margin: 0px 6px;
+
     padding: 10px 20px 5px;
+    border-bottom: 6px solid transparent;
+
     color: #666;
     text-decoration: none;
     display: inline-block;
-    border-bottom: 6px solid transparent;
 }
 
 #nav-bar a.current,
