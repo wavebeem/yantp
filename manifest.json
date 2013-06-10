@@ -1,7 +1,7 @@
 {
     "manifest_version" : 2,
-    "version" : "1.0",
-    "name" : "New Tab Page",
+    "version" : "0.1",
+    "name" : "Yet Another New Tab Page",
     "permissions" : [
         "topSites",
         "bookmarks",
