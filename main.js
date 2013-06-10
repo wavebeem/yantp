@@ -35,44 +35,55 @@ function title(title) {
     return elem;
 }
 
-function generateBookmarkOrFolder(node, path) {
-    path = path || [];
+function walkBookmarks(node, callback, path) {
     var elem;
     var pathText;
 
+    if (! node) return;
+
     if (node.url) {
-        elem = document.createElement("a");
-        elem.className = "node bookmark";
-        elem.appendChild(favicon(node.url));
-        if (path.length > 0) {
-            pathText = path.join(" / ") + " / ";
-            appendText(elem, pathText);
-        }
-        else {
-            elem.classList.add("top-level");
-        }
-        // appendtext(elem, node.title);
-        elem.appendChild(title(node.title));
-        elem.href = node.url;
+        callback(node, path);
     }
     else if (node.children) {
-        elem = document.createElement("div");
-        elem.className = "node folder";
-        // elem.appendChild(header(2, node.title));
         node.children.forEach(function(child) {
-            elem.appendChild(generateBookmarkOrFolder(child, path.concat(node.title)));
+            walkBookmarks(child, callback, (path || []).concat(node.title));
         });
     }
+    else {
+        throw new Error("What kind of bookmark node is this?");
+    }
+}
+
+function generatePath(path) {
+    var elem = document.createElement("span");
+    elem.className = "path";
+
+    path.forEach(function(chunk, i) {
+        var chunkElem = document.createElement("span");
+        var sepElem   = document.createElement("span");
+
+        chunkElem.className = "chunk";
+        sepElem  .className = "separator";
+
+        appendText(chunkElem, chunk);
+        appendText(sepElem,   " / ");
+
+        elem.appendChild(chunkElem);
+        elem.appendChild(sepElem);
+    });
 
     return elem;
 }
 
-function generateTopSite(site) {
+function generateLink(site, path) {
     var elem;
 
     elem = document.createElement("a");
     elem.className = "node top-site";
     elem.appendChild(favicon(site.url));
+    if (path) {
+        elem.appendChild(generatePath(path));
+    }
     elem.appendChild(title(site.title));
     elem.href = site.url;
 
@@ -80,62 +91,122 @@ function generateTopSite(site) {
 }
 
 function render() {
-    if (! bookmarks) return;
-    if (! topSites)  return;
+    if (! tabs["top-sites"]) return;
+    if (! tabs["bookmarks"]) return;
+    if (! tabs["others"   ]) return;
 
-    topSites.innerHTML = "";
+    tabs["top-sites"].innerHTML = "";
     chrome.topSites.get(function(sites) {
         sites.forEach(function(site) {
-            topSites.appendChild(generateTopSite(site));
+            tabs["top-sites"].appendChild(generateLink(site));
         });
     });
 
-    bookmarks.innerHTML = "";
-    chrome.bookmarks.getSubTree("1", function(nodes) {
+    renderBookmarksSubtreeByIdInto("1", tabs["bookmarks"]);
+    renderBookmarksSubtreeByIdInto("2", tabs["others"]);
+}
+
+function renderBookmarksSubtreeByIdInto(bookmarkId, rootElem) {
+    rootElem.innerHTML = "";
+    chrome.bookmarks.getSubTree(bookmarkId, function(nodes) {
         nodes[0].children.forEach(function(node) {
-            var bookmark = generateBookmarkOrFolder(node);
-            bookmarks.appendChild(bookmark);
+            walkBookmarks(node, function(bookmark, path) {
+                var elem = generateLink(bookmark, path);
+                rootElem.appendChild(elem);
+            });
         });
     });
+}
+
+var bookmarkIds = {
+    all: "2",
+    bar: "1",
 }
 
 var tabHandlers = {
     "bookmarks": function() {
         localStorage.last_tab   = "bookmarks";
         bookmarks.style.display = "inline-block";
+        others   .style.display = "none";
         topSites .style.display = "none";
 
         ID("show-bookmarks").classList.add("current");
         ID("show-top-sites").classList.remove("current");
+        ID("show-others"   ).classList.remove("current");
     },
 
     "top-sites": function() {
         localStorage.last_tab   = "top-sites";
         topSites .style.display = "inline-block";
+        others   .style.display = "none";
         bookmarks.style.display = "none";
 
         ID("show-top-sites").classList.add("current");
         ID("show-bookmarks").classList.remove("current");
+        ID("show-others"   ).classList.remove("current");
+    },
+
+    "others": function() {
+        localStorage.last_tab   = "others";
+        others   .style.display = "inline-block";
+        topSites .style.display = "none";
+        bookmarks.style.display = "none";
+
+        ID("show-others"   ).classList.add("current");
+        ID("show-bookmarks").classList.remove("current");
+        ID("show-top-sites").classList.remove("current");
+    },
+};
+
+var tabs = {
+    "bookmarks" : null,
+    "top-sites" : null,
+    "others"    : null,
+};
+
+var has = Object.prototype.hasOwnProperty;
+
+var eachPair = function(obj, callback) {
+    for (var k in obj) {
+        if (has.call(obj, k)) {
+            callback.call(obj, k, obj[k]);
+        }
     }
 };
 
-function editBookmarks() {
-    chrome.tabs.create({ url: "chrome://bookmarks" });
+eachPair(tabs, function(k, v) {
+    tabHandlers[k] = function() {
+        localStorage.last_tab = k;
+
+        eachPair(tabs, function(k2, v2) {
+            ID("show-" + k2).classList.remove("current");
+            tabs[k2].style.display = "none";
+        });
+
+        ID("show-" + k).classList.add("current");
+        tabs[k].style.display = "inline-block";
+    };
+});
+
+function newTabOpener(url) {
+    return function() {
+        chrome.tabs.create({ url: url });
+    };
 }
 
-var bookmarks;
-var topSites;
+localStorage.last_tab = localStorage.last_tab || "bookmarks";
 
 addEventListener("DOMContentLoaded", function(event) {
-    bookmarks = ID("bookmarks");
-    topSites  = ID("top-sites");
+    eachPair(tabs, function(k, v) {
+        this[k] = ID(k);
+        ID("show-" + k).onclick = tabHandlers[k];
+    });
 
-    ID("edit-bookmarks").onclick = editBookmarks;
-    ID("show-bookmarks").onclick = tabHandlers["bookmarks"];
-    ID("show-top-sites").onclick = tabHandlers["top-sites"];
+    ID("edit-bookmarks").onclick = newTabOpener("chrome://bookmarks");
+    ID("go-to-apps"    ).onclick = newTabOpener("chrome://apps");
 
     // Restore last focused tab
-    var tab = localStorage.last_tab;
+    var tab = localStorage.last_tab || "bookmarks";
     var fun = tabHandlers[tab];
     if (fun) fun();
 

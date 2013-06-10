@@ -1,4 +1,5 @@
 html {
+    min-width: 500px;
     background-color: #eee;
     color: #444;
     text-align: center;
@@ -19,48 +20,38 @@ h1 {
 
 body {
     text-align: center;
-    /* display: inline-block;*/
-    margin: 0px;
+    margin: 0px 20px;
 }
 
-#bookmarks {
+#container div {
     padding: 12px;
-
-    /* border: 1px solid rgba(0, 0, 0, 0.10);*/
 
     border-radius: 2px;
 
-    text-align: center;
+    text-align: left;
 
     display: inline-block;
-
-    /* max-width: 1000px;*/
-    max-width: 800px;
-}
-
-#top-sites {
-    padding: 12px;
 }
 
 #container {
     background-color: #f8f8f8;
     text-align: center;
 
+    max-width: 700px;
+    min-width: 500px;
+
+    display: inline-block;
+
+    margin: 0px auto;
+
     border: 0px solid rgba(0, 0, 0, 0.20);
     border-top-color: rgba(0, 0, 0, 0.15);
 
-    /* border-bottom-width: 1px;*/
-    border-width: 1px 0px;
+    border-width: 1px;
 
-    /* box-shadow:*/
-    /*     0px -3px 0px rgba(0, 0, 0, 0.03),*/
-    /*     0px  3px 0px rgba(0, 0, 0, 0.03);*/
+    box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.03);
 
-    /* box-shadow:*/
-    /*     inset 0px 3px 0px rgba(0, 0, 0, 0.03),*/
-    /*           0px 3px 0px rgba(0, 0, 0, 0.03);*/
-
-    box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
 }
 
 .node,
@@ -70,26 +61,19 @@ body {
 }
 
 .bookmark:hover {
-    /* background-color: rgba(255, 255, 255, 0.40);*/
     background-color: #fff;
     border-color: rgba(0, 0, 0, 0.20);
     box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.05);
 }
 
 .bookmark {
-    /* border: 1px solid rgba(0, 0, 0, 0.10);*/
     border: 1px solid transparent;
-    background-color: rgba(255, 255, 255, 0.20);
 
     border-radius: 4px;
 
-    /* margin: 4px 4px;*/
-
-    /* padding: 2px 10px;*/
     padding: 3px 14px 9px;
 
     display: inline-block;
-    /* display: block;*/
 
     min-width: 7em;
 
@@ -146,24 +130,19 @@ body {
 }
 
 #top-sites {
-    text-align: left;
-    /* display: inline-block;*/
     display: none;
 }
 
-#top-sites .top-site {
+.bookmark,
+.top-site {
     display: block;
     padding: 4px 10px 8px;
     border-radius: 6px;
     border: 1px solid transparent;
 }
 
-#top-sites .top-site:hover {
-    /* text-decoration: underline;*/
-
-    /* background-color: rgba(0, 0, 0, 0.05);*/
-    /* border-color:     rgba(0, 0, 0, 0.05);*/
-
+.bookmark,
+.top-site:hover {
     background-color: rgba(255, 255, 255, 0.85);
     border-color:     rgba(  0,   0,   0, 0.20);
     box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.05);
@@ -180,29 +159,19 @@ body {
 
 #nav-bar a {
     margin: 0px 6px;
-    padding: 5px 20px;
+    padding: 10px 20px 5px;
     color: #666;
     text-decoration: none;
     display: inline-block;
     border-bottom: 6px solid transparent;
-    /* border: 0px solid rgba(0, 0, 0, 0.10);*/
-    /* border-right-width: 1px;*/
-}
-
-#nav-bar a:first-child {
-    /* border-left-width: 1px;*/
 }
 
 #nav-bar a.current,
 #nav-bar a.current:hover {
     color: #000;
-    /* font-weight: bold;*/
-    /* box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.20);*/
     border-color: #777;
 }
 
 #nav-bar a:hover {
-    /* text-decoration: underline;*/
-    /* box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.10);*/
     border-color: #ccc;
 }

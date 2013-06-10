@@ -7,15 +7,21 @@
     </head>
     <body>
         <div id="nav-bar"><!--
-         --><a href="#" id="show-bookmarks">Bookmarks</a><!--
+         --><a href="#" id="show-bookmarks">Bookmarks Bar</a><!--
+         --><a href="#" id="show-others">Other Bookmarks</a><!--
          --><a href="#" id="show-top-sites">Top Sites</a><!--
      --></div>
         <div id="container">
-            <div id="top-sites"></div>
             <div id="bookmarks"></div>
+            <div id="others"></div>
+            <div id="top-sites"></div>
         </div>
         <div id="footer">
             <a href="chrome://bookmarks" id="edit-bookmarks">Edit Bookmarks</a>
+            <span class="separator"> / </span>
+            <a href="chrome://apps" id="go-to-apps">apps</a>
+            <span class="separator"> / </span>
+            <a href="http://saikobee.github.io/" target="_blank" id="copyright">&copy; 2013 Brian Mock</a>
         </div>
     </body>
 </html>
