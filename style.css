@@ -88,6 +88,8 @@ body {
     padding: 3px;
     border: 1px solid rgba(0, 0, 0, 0.20);
     border-radius: 4px;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
 }
 
 .title {
@@ -140,7 +142,8 @@ body {
     box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.05);
 }
 
-#nav-bar a,
+.empty-message,
+#nav-bar button,
 #footer a {
     text-transform: lowercase;
 }
@@ -152,10 +155,16 @@ body {
     border-bottom: 1px solid rgba(0, 0, 0, 0.20);
 }
 
-#nav-bar a {
+#nav-bar button {
     margin: 0px 6px;
 
     padding: 10px 20px 5px;
+
+    background-color: transparent;
+
+    font-size: 100%;
+
+    border: none;
     border-bottom: 6px solid transparent;
 
     color: #666;
@@ -163,12 +172,17 @@ body {
     display: inline-block;
 }
 
-#nav-bar a.current,
-#nav-bar a.current:hover {
+#nav-bar button.current,
+#nav-bar button.current:hover {
     color: #000;
     border-color: #777;
 }
 
-#nav-bar a:hover {
+#nav-bar button:hover {
+    cursor: pointer;
     border-color: #ccc;
+}
+
+.empty-message {
+    color: #aaa;
 }

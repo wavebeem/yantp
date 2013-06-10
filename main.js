@@ -106,15 +106,29 @@ function render() {
     renderBookmarksSubtreeByIdInto("2", tabs["others"]);
 }
 
+function emptyMessage() {
+    var elem = document.createElement("p");
+    elem.className = "empty-message";
+    elem.appendChild(document.createTextNode(
+        "This is where bookmarks would go, if you had any"
+    ));
+    return elem;
+}
+
 function renderBookmarksSubtreeByIdInto(bookmarkId, rootElem) {
     rootElem.innerHTML = "";
     chrome.bookmarks.getSubTree(bookmarkId, function(nodes) {
-        nodes[0].children.forEach(function(node) {
-            walkBookmarks(node, function(bookmark, path) {
-                var elem = generateLink(bookmark, path);
-                rootElem.appendChild(elem);
+        if (nodes[0].children.length === 0) {
+            rootElem.appendChild(emptyMessage());
+        }
+        else {
+            nodes[0].children.forEach(function(node) {
+                walkBookmarks(node, function(bookmark, path) {
+                    var elem = generateLink(bookmark, path);
+                    rootElem.appendChild(elem);
+                });
             });
-        });
+        }
     });
 }
 
@@ -166,7 +180,10 @@ localStorage.last_tab = localStorage.last_tab || "bookmarks";
 addEventListener("DOMContentLoaded", function(event) {
     eachPair(tabs, function(k, v) {
         this[k] = ID(k);
-        ID("show-" + k).onclick = tabHandlers[k];
+        ID("show-" + k).onclick = function(event) {
+            event.preventDefault();
+            tabHandlers[k]();
+        };
     });
 
     ID("edit-bookmarks").onclick = newTabOpener("chrome://bookmarks");
