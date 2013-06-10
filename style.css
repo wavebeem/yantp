@@ -106,7 +106,7 @@ body {
 }
 
 #footer {
-    margin-top: 0.50em;
+    margin: 0.50em 1.00em 0.75em;
 }
 
 #footer a:hover {
@@ -115,7 +115,7 @@ body {
     text-decoration: underline;
 }
 
-#footer .separator {
+.separator {
     margin: 0px 10px;
     display: inline-block;
     color: #aaa;
@@ -147,7 +147,7 @@ body {
 
 #nav-bar {
     padding: 1px;
-    margin: 0px -20px;
+    margin: 0px;
     background-color: #fafafa;
     border-bottom: 1px solid rgba(0, 0, 0, 0.20);
 }
