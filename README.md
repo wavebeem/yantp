@@ -11,4 +11,4 @@ through the GitHub Issues tracker.
 ## I have code I would like to contribute!
 Send me a pull request!
 ## This extension sucks
-If you don't like it, just go to [chrome://extensions] and uninstall it.
+If you don't like it, just go to _Menu > Tools > Extensions_ and uninstall it.
