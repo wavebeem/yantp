@@ -186,8 +186,15 @@ addEventListener("DOMContentLoaded", function(event) {
         };
     });
 
-    ID("edit-bookmarks").onclick = newTabOpener("chrome://bookmarks");
-    ID("go-to-apps"    ).onclick = newTabOpener("chrome://apps");
+    var newTabLinks = [
+        ID("edit-bookmarks"),
+        ID("go-to-apps"),
+        ID("go-to-extensions"),
+    ];
+
+    newTabLinks.forEach(function(link) {
+        link.onclick = newTabOpener(link.href);
+    });
 
     // Restore last focused tab
     var tab = localStorage.last_tab || "bookmarks";
