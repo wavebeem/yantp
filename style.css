@@ -1,6 +1,6 @@
 html {
     min-width: 500px;
-    background-color: #ececec;
+    background-color: #f6f6f6;
     color: #444;
     text-align: center;
     font-size: 16px;
@@ -42,15 +42,17 @@ body {
 }
 
 #container {
-    background-color: #fff;
+    background-color: #fcfcfc;
     text-align: center;
 
     display: block;
 
     margin: 0px auto;
 
-    border: 0px solid rgba(0, 0, 0, 0.15);
+    border: 0px solid rgba(0, 0, 0, 0.12);
     border-width: 1px 0px;
+
+    min-height: 400px;
 }
 
 .node,
@@ -67,7 +69,7 @@ body {
     background-color: #fff;
     padding: 3px;
     border: 1px solid rgba(0, 0, 0, 0.10);
-    border-radius: 2px;
+    border-radius: 4px;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: pixelated;
 }
@@ -111,16 +113,15 @@ body {
 
 .node {
     display: block;
-    padding: 6px 12px;
+    padding: 3px 9px 6px;
     border: 1px solid transparent;
+    border-radius: 2px;
 }
 
 .node:hover {
-    background-color: rgba(  0,   0,   0, 0.05);
-    border-color:     rgba(  0,   0,   0, 0.10);
-    box-shadow:
-        inset  3px 0px 0px rgba(0, 0, 0, 0.05),
-        inset -3px 0px 0px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    border-color:     rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.04);
 }
 
 .empty-message,
