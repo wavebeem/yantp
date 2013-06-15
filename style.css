@@ -1,6 +1,6 @@
 html {
     min-width: 500px;
-    background-color: #fcfcfc;
+    background-color: #fafafa;
     color: #444;
     text-align: center;
     font-size: 16px;
@@ -8,7 +8,7 @@ html {
 
 #nav-bar,
 #footer {
-    background-color: #f6f6f6;
+    background-color: #f3f3f3;
 }
 
 html,
@@ -51,12 +51,13 @@ body {
 
     display: block;
 
-    margin: 4em auto 3em auto;
+    margin-left:   auto;
+    margin-right:  auto;
+    margin-top:    44px;
+    margin-bottom: 41px;
 
     /* border: 0px solid rgba(0, 0, 0, 0.12);*/
     /* border-width: 1px 0px;*/
-
-    min-height: 400px;
 }
 
 .node,
@@ -132,7 +133,7 @@ body {
     display: block;
     padding: 3px 9px 6px;
     border: 1px solid transparent;
-    border-radius: 2px;
+    border-radius: 3px;
 }
 
 .node:hover {
