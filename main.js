@@ -6,6 +6,10 @@ function ID(id) {
     return document.getElementById(id);
 }
 
+function listen(obj, name, cb, capture) {
+    obj.addEventListener(name, cb, !!capture);
+}
+
 function img(src) {
     var elem = document.createElement("img");
     elem.src = src;
@@ -130,6 +134,7 @@ function renderBookmarksSubtreeByIdInto(bookmarkId, rootElem) {
             });
         }
     });
+    dirty = false;
 }
 
 var bookmarkIds = {
@@ -170,20 +175,23 @@ eachPair(tabs, function(k, v) {
 });
 
 function newTabOpener(url) {
-    return function() {
+    return function(event) {
         chrome.tabs.create({ url: url });
+        if (event) event.preventDefault();
     };
 }
 
+var dirty = false;
+
 localStorage.last_tab = localStorage.last_tab || "bookmarks";
 
-addEventListener("DOMContentLoaded", function(event) {
+listen(window, "DOMContentLoaded", function(event) {
     eachPair(tabs, function(k, v) {
         this[k] = ID(k);
-        ID("show-" + k).onclick = function(event) {
+        listen(ID("show-" + k), "click", function(event) {
             event.preventDefault();
             tabHandlers[k]();
-        };
+        });
     });
 
     var newTabLinks = [
@@ -207,7 +215,15 @@ addEventListener("DOMContentLoaded", function(event) {
     var events = chrome.bookmarks;
     for (var name in events) {
         if (name.indexOf("on") === 0) {
-            events[name].addListener(render);
+            events[name].addListener(function() {
+                dirty = true;
+            });
         }
     }
-}, false);
+
+    listen(window, "focus", function(event) {
+        if (dirty) {
+            render();
+        }
+    });
+});
