@@ -14,7 +14,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="icon.svg">
+   sodipodi:docname="icon.svg"
+   inkscape:export-filename="M:\yantp\icon.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4">
     <inkscape:perspective
@@ -33,8 +36,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="46.661875"
-     inkscape:cy="49.421772"
+     inkscape:cx="96.868282"
+     inkscape:cy="70.023625"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -65,6 +68,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -83,12 +87,12 @@
          height="96"
          width="96"
          id="rect3868"
-         style="fill:#888a85;fill-opacity:1;stroke:none" />
+         style="fill:#eeeeec;fill-opacity:1;stroke:none" />
       <path
          inkscape:connector-curvature="0"
          id="rect3900"
          d="m 10.88676,1004.0312 0,2 c 0,4.01 3.568,7.25 8,7.25 l 80,0 c 4.432,0 8,-3.24 8,-7.25 l 0,-2 c 0,4.01 -3.568,7.25 -8,7.25 l -80,0 c -4.432,0 -8,-3.24 -8,-7.25 z"
-         style="fill:#000000;fill-opacity:1;stroke:none;opacity:0.2" />
+         style="fill:#000000;fill-opacity:1;stroke:none;opacity:0.1" />
       <path
          inkscape:connector-curvature="0"
          id="rect3898"
@@ -102,7 +106,7 @@
          inkscape:connector-curvature="0"
          id="rect2987"
          d="m 50.327619,930.49471 0,26.22736 -26.227376,0 0,17.11835 26.227376,0 0,26.22738 17.118282,0 0,-26.22738 26.227376,0 0,-17.11838 -26.227376,0 0,-26.22733 z"
-         style="fill:#d3d7cf;fill-opacity:1;stroke:none" />
+         style="fill:#73d216;fill-opacity:1;stroke:none" />
       <path
          inkscape:connector-curvature="0"
          id="path3904"
