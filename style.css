@@ -12,6 +12,13 @@ html {
     z-index: 100;
 }
 
+#nav-bar {
+}
+
+#footer {
+    height: 20px;
+}
+
 html,
 button {
     font-family:
@@ -25,7 +32,7 @@ button {
 h1 {
     font-size: 120%;
     margin: 2px;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
     padding: 0px;
     text-align: center;
 }
@@ -56,8 +63,8 @@ body {
 
     left:    0px;
     right:   0px;
-    top:    44px;
-    bottom: 41px;
+    top:    42px;
+    bottom: 40px;
 
     overflow-y: auto;
 
@@ -117,7 +124,7 @@ body {
 
 #footer {
     bottom: 0px;
-    padding: 0.50em 1.00em 0.75em;
+    padding: 10px 1em;
 }
 
 #footer a:hover {
@@ -130,6 +137,7 @@ body {
     margin: 0px 10px;
     display: inline-block;
     color: #bbb;
+    cursor: default;
 }
 
 #top-sites {
@@ -156,21 +164,23 @@ body {
 }
 
 #nav-bar {
-    padding: 1px;
+    padding: 0px;
     margin: 0px;
 }
 
 #nav-bar button {
-    margin: 0px 6px;
+    margin: 1px 6px 1px 6px;
 
     padding: 10px 20px 5px;
+
+    height: 40px;
 
     background-color: transparent;
 
     font-size: 100%;
 
     border: none;
-    border-bottom: 6px solid transparent;
+    border-bottom: 5px solid transparent;
 
     color: #666;
     text-decoration: none;
