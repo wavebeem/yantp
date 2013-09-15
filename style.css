@@ -1,6 +1,6 @@
 html {
     min-width: 500px;
-    background-color: #fff;
+    background-color: #f4f4f4;
     color: #444;
     text-align: center;
     font-size: 16px;
@@ -12,7 +12,7 @@ html {
 
 #nav-bar,
 #footer {
-    background-color: #f3f3f3;
+    background-color: #fff;
     z-index: 100;
 }
 
@@ -87,18 +87,22 @@ body {
     text-overflow: ellipsis;
 }
 
+.node:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
 .favicon {
     margin-right: 6px;
     background-color: #fff;
     padding: 3px;
-    border: 1px solid rgba(0, 0, 0, 0.10);
+    border: 1px solid rgba(0, 0, 0, 0.20);
     border-radius: 4px;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: pixelated;
 }
 
 .title {
-    color: #000;
+    color: #444;
     font-size: 18px;
 }
 
@@ -119,7 +123,9 @@ body {
     position: fixed;
     left:  0px;
     right: 0px;
-    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.15);
+    box-shadow:
+        0px 0px 0px 1px rgba(0, 0, 0, 0.10),
+        0px 0px 8px 4px #f4f4f4;
 }
 
 #nav-bar {
@@ -156,9 +162,14 @@ body {
 }
 
 .node:hover {
-    background-color: #fafafa;
-    border-color:     rgba(0, 0, 0, 0.15);
-    box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.04);
+    /* background-color: #fafafa;*/
+    /* border-color:     rgba(0, 0, 0, 0.15);*/
+    /* box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.04);*/
+}
+
+.node:hover .title {
+    color: #729fcf;
+    text-decoration: underline;
 }
 
 .empty-message,
