@@ -10,17 +10,23 @@ function listen(obj, name, cb, capture) {
     obj.addEventListener(name, cb, !!capture);
 }
 
-function img(src) {
-    var elem = document.createElement("img");
-    elem.src = src;
-    elem.className = "favicon";
+function img(url) {
+    var elem = document.createElement("span");
+    var backgroundImage = "-webkit-image-set(" + [
+        "url(chrome://favicon/size/16@1x/" + url + ") 1x",
+        "url(chrome://favicon/size/16@2x/" + url + ") 2x"
+    ].join(", ") + ")";
+    console.log(backgroundImage);
+    elem.style.backgroundImage = backgroundImage;
+    elem.className = "image";
     return elem;
 }
 
 function favicon(url) {
-    var elem = img("chrome://favicon/" + url);
-    elem.width  = 16;
-    elem.height = 16;
+    var elem  = document.createElement("span");
+    var image = img(url);
+    elem.className = "favicon";
+    elem.appendChild(image);
     return elem;
 }
 

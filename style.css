@@ -97,8 +97,14 @@ body {
     padding: 3px;
     border: 1px solid rgba(0, 0, 0, 0.20);
     border-radius: 4px;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: pixelated;
+    display: inline-block;
+}
+
+.favicon .image {
+    background-size: 16px;
+    width: 16px;
+    height: 16px;
+    display: block;
 }
 
 .title {
