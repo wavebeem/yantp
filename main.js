@@ -16,7 +16,6 @@ function img(url) {
         "url(chrome://favicon/size/16@1x/" + url + ") 1x",
         "url(chrome://favicon/size/16@2x/" + url + ") 2x"
     ].join(", ") + ")";
-    console.log(backgroundImage);
     elem.style.backgroundImage = backgroundImage;
     elem.className = "image";
     return elem;
