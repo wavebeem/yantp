@@ -1,6 +1,6 @@
 # Yet Another New Tab Page
 ## Why does this exist?
-I Really don't like the new new tab page in Chrome 28, and generally wanted
+I really don't like the new _New Tab Page_ in Chrome 28, and generally wanted
 something easier to scan than those useless website thumbnails and shrunken
 down buttons in a bookmark bar.
 ## What am I waiting for?
