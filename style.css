@@ -3,7 +3,6 @@ html {
     background-color: #f4f4f4;
     color: #444;
     text-align: center;
-    font-size: 16px;
 }
 
 :focus {
@@ -23,14 +22,23 @@ html {
     height: 20px;
 }
 
+.node,
 html,
 button {
     font-family:
-        "Lucida Grande",
-        "Segoe UI",
-        "Verdana",
+        "Helvetica",
+        "Arial",
         sans-serif
         !important;
+}
+
+.node {
+    font-size: 16px;
+}
+
+html,
+button {
+    font-size: 20px;
 }
 
 h1 {
@@ -55,7 +63,7 @@ body {
 
     display: inline-block;
 
-    max-width: 700px;
+    max-width: 800px;
 }
 
 #container {
@@ -92,7 +100,7 @@ body {
 }
 
 .favicon {
-    margin-right: 6px;
+    margin-right: 9px;
     background-color: #fff;
     padding: 3px;
     border: 1px solid rgba(0, 0, 0, 0.20);
@@ -160,26 +168,14 @@ body {
 
 .node {
     display: block;
-    padding: 3px 9px 6px;
+    padding: 6px 12px 9px;
     border: 1px solid transparent;
     border-radius: 0px;
-}
-
-.node:hover {
-    /* background-color: #fafafa;*/
-    /* border-color:     rgba(0, 0, 0, 0.15);*/
-    /* box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.04);*/
 }
 
 .node:hover .title {
     color: #729fcf;
     text-decoration: underline;
-}
-
-.empty-message,
-#nav-bar button,
-#footer a {
-    text-transform: lowercase;
 }
 
 #nav-bar {
