@@ -1,6 +1,6 @@
 html {
     min-width: 500px;
-    background-color: #f4f4f4;
+    background-color: #fff;
     color: #444;
     text-align: center;
 }
@@ -82,8 +82,7 @@ body {
 
     z-index: 10;
 
-    /* border: 0px solid rgba(0, 0, 0, 0.12);*/
-    /* border-width: 1px 0px;*/
+    background: #f4f4f4;
 }
 
 .node,
