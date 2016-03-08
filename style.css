@@ -1,217 +1,217 @@
 html {
-    min-width: 500px;
-    background-color: #fff;
-    color: #444;
-    text-align: center;
+  min-width: 500px;
+  background-color: #fff;
+  color: #444;
+  text-align: center;
 }
 
 :focus {
-    outline: none;
+  outline: none;
 }
 
 #nav-bar,
 #footer {
-    background-color: #fff;
-    z-index: 100;
+  background-color: #fff;
+  z-index: 100;
 }
 
 #nav-bar {
 }
 
 #footer {
-    height: 20px;
+  height: 20px;
 }
 
 .node,
 html,
 button {
-    font-family:
-        "Helvetica",
-        "Arial",
-        sans-serif
-        !important;
+  font-family:
+    "Helvetica",
+    "Arial",
+    sans-serif
+    !important;
 }
 
 .node {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 html,
 button {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 h1 {
-    font-size: 120%;
-    margin: 2px;
-    margin-bottom: 5px;
-    padding: 0px;
-    text-align: center;
+  font-size: 120%;
+  margin: 2px;
+  margin-bottom: 5px;
+  padding: 0px;
+  text-align: center;
 }
 
 body {
-    text-align: center;
-    margin: 0px;
+  text-align: center;
+  margin: 0px;
 }
 
 #container div {
-    padding: 12px;
+  padding: 12px;
 
-    border-radius: 2px;
+  border-radius: 2px;
 
-    text-align: left;
+  text-align: left;
 
-    display: inline-block;
+  display: inline-block;
 
-    max-width: 800px;
+  max-width: 800px;
 }
 
 #container {
-    text-align: center;
+  text-align: center;
 
-    display: block;
+  display: block;
 
-    position: fixed;
+  position: fixed;
 
-    left:    0px;
-    right:   0px;
-    top:    42px;
-    bottom: 40px;
+  left:    0px;
+  right:   0px;
+  top:    42px;
+  bottom: 40px;
 
-    overflow-y: auto;
+  overflow-y: auto;
 
-    z-index: 10;
+  z-index: 10;
 
-    background: #f4f4f4;
+  background: #f4f4f4;
 }
 
 .node,
 .node:visited {
-    color: #888;
-    text-decoration: none;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  color: #888;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .node:not(:last-child) {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .favicon {
-    margin-right: 9px;
-    background-color: #fff;
-    padding: 3px;
-    border: 1px solid rgba(0, 0, 0, 0.20);
-    border-radius: 4px;
-    display: inline-block;
+  margin-right: 9px;
+  background-color: #fff;
+  padding: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.20);
+  border-radius: 4px;
+  display: inline-block;
 }
 
 .favicon .image {
-    background-size: 16px;
-    width: 16px;
-    height: 16px;
-    display: block;
+  background-size: 16px;
+  width: 16px;
+  height: 16px;
+  display: block;
 }
 
 .title {
-    color: #444;
-    font-size: 18px;
+  color: #444;
+  font-size: 18px;
 }
 
 .title,
 .favicon {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 #footer a {
-    text-decoration: none;
-    color: #888;
+  text-decoration: none;
+  color: #888;
 
-    display: inline-block;
+  display: inline-block;
 }
 
 #footer,
 #nav-bar {
-    position: fixed;
-    left:  0px;
-    right: 0px;
-    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.10);
+  position: fixed;
+  left:  0px;
+  right: 0px;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.10);
 }
 
 #nav-bar {
-    top: 0px;
+  top: 0px;
 }
 
 #footer {
-    bottom: 0px;
-    padding: 8px 1em 12px;
+  bottom: 0px;
+  padding: 8px 1em 12px;
 }
 
 #footer a:hover {
-    color: #000;
-    cursor: pointer;
-    text-decoration: underline;
+  color: #000;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .separator {
-    margin: 0px 10px;
-    display: inline-block;
-    color: #bbb;
-    cursor: default;
+  margin: 0px 10px;
+  display: inline-block;
+  color: #bbb;
+  cursor: default;
 }
 
 #top-sites {
-    display: none;
+  display: none;
 }
 
 .node {
-    display: block;
-    padding: 6px 12px 9px;
-    border: 1px solid transparent;
-    border-radius: 0px;
+  display: block;
+  padding: 6px 12px 9px;
+  border: 1px solid transparent;
+  border-radius: 0px;
 }
 
 .node:hover .title {
-    color: #729fcf;
-    text-decoration: underline;
+  color: #729fcf;
+  text-decoration: underline;
 }
 
 #nav-bar {
-    padding: 0px;
-    margin: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 
 #nav-bar button {
-    margin: 1px 6px 1px 6px;
+  margin: 1px 6px 1px 6px;
 
-    padding: 10px 20px 5px;
+  padding: 10px 20px 5px;
 
-    height: 40px;
+  height: 40px;
 
-    background-color: transparent;
+  background-color: transparent;
 
-    font-size: 100%;
+  font-size: 100%;
 
-    border: none;
-    border-bottom: 5px solid transparent;
+  border: none;
+  border-bottom: 5px solid transparent;
 
-    color: #666;
-    text-decoration: none;
-    display: inline-block;
+  color: #666;
+  text-decoration: none;
+  display: inline-block;
 }
 
 #nav-bar button.current,
 #nav-bar button.current:hover {
-    color: #000;
-    border-color: #777;
+  color: #000;
+  border-color: #777;
 }
 
 #nav-bar button:hover {
-    cursor: pointer;
-    border-color: #ccc;
+  cursor: pointer;
+  border-color: #ccc;
 }
 
 .empty-message {
-    color: #aaa;
+  color: #aaa;
 }
