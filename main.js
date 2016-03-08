@@ -1,3 +1,5 @@
+var global = this;
+
 function appendText(elem, text) {
     elem.appendChild(document.createTextNode(text));
 }
@@ -182,6 +184,7 @@ eachPair(tabs, function(k, v) {
 function newTabOpener(url) {
     return function(event) {
         chrome.tabs.create({ url: url });
+        global.close();
         if (event) event.preventDefault();
     };
 }
