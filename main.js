@@ -1,4 +1,15 @@
-var global = this;
+function throttle(time, fn) {
+  let lastRun = Date.now();
+  return function() {
+    const now = Date.now();
+    const delta = now - lastRun;
+    if (delta >= time) {
+      lastRun = now;
+      return fn.apply(this, arguments);
+    }
+    return undefined;
+  };
+}
 
 function appendText(elem, text) {
   elem.appendChild(document.createTextNode(text));
@@ -135,7 +146,6 @@ function renderBookmarksSubtreeByIdInto(bookmarkId, rootElem) {
       });
     }
   });
-  dirty = false;
 }
 
 var bookmarkIds = {
@@ -178,14 +188,12 @@ eachPair(tabs, function(k, v) {
 function newTabOpener(url) {
   return function(event) {
     chrome.tabs.create({url: url});
-    global.close();
+    window.close();
     if (event) {
       event.preventDefault();
     }
   };
 }
-
-var dirty = false;
 
 localStorage.last_tab = localStorage.last_tab || 'bookmarks';
 
@@ -217,19 +225,12 @@ listen(window, 'DOMContentLoaded', function(event) {
 
   render();
 
-  // Re-render on all bookmarks update events
-  var events = chrome.bookmarks;
-  for (var name in events) {
-    if (name.indexOf('on') === 0) {
-      events[name].addListener(function() {
-        dirty = true;
-      });
-    }
-  }
+  var throttledRender = throttle(200, render);
 
-  listen(window, 'focus', function(event) {
-    if (dirty) {
-      render();
-    }
-  });
+  // Re-render on all bookmarks update events
+  Object.keys(chrome.bookmarks)
+    .filter(name => name.indexOf('on') === 0)
+    .forEach(name => {
+      chrome.bookmarks[name].addListener(throttledRender);
+    });
 });

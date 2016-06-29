@@ -5,10 +5,12 @@ html {
   text-align: center;
 }
 
+/* TODO: Ugh, please stop doing this */
 :focus {
   outline: none;
 }
 
+/* TODO: Ugh, please stop styling on IDs */
 #nav-bar,
 #footer {
   background-color: #fff;
