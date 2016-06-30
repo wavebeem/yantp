@@ -166,16 +166,16 @@ var has = Object.prototype.hasOwnProperty;
 var eachPair = function(obj, callback) {
   for (var k in obj) {
     if (has.call(obj, k)) {
-      callback.call(obj, k, obj[k]);
+      callback(obj, k, obj[k]);
     }
   }
 };
 
-eachPair(tabs, function(k, v) {
+eachPair(tabs, function(_obj, k, v) {
   tabHandlers[k] = function() {
     localStorage.last_tab = k;
 
-    eachPair(tabs, function(k2, v2) {
+    eachPair(tabs, function(_obj, k2, v2) {
       ID('show-' + k2).classList.remove('current');
       tabs[k2].style.display = 'none';
     });
@@ -187,7 +187,7 @@ eachPair(tabs, function(k, v) {
 
 function newTabOpener(url) {
   return function(event) {
-    chrome.tabs.create({url: url});
+    chrome.tabs.create({url});
     window.close();
     if (event) {
       event.preventDefault();
@@ -198,8 +198,8 @@ function newTabOpener(url) {
 localStorage.last_tab = localStorage.last_tab || 'bookmarks';
 
 listen(window, 'DOMContentLoaded', function(event) {
-  eachPair(tabs, function(k, v) {
-    this[k] = ID(k);
+  eachPair(tabs, function(obj, k, v) {
+    obj[k] = ID(k);
     listen(ID('show-' + k), 'click', function(event) {
       event.preventDefault();
       tabHandlers[k]();

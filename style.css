@@ -1,5 +1,4 @@
 html {
-  min-width: 500px;
   background-color: #fff;
   color: #444;
   text-align: center;
@@ -17,11 +16,18 @@ html {
   z-index: 100;
 }
 
-#nav-bar {
+#nav-bar,
+#footer {
+  flex: 0 0 auto;
 }
 
-#footer {
-  height: 20px;
+#container {
+  flex: 1 0 auto;
+  height: 0;
+  position: relative;
+}
+
+#nav-bar {
 }
 
 #footer > * {
@@ -31,11 +37,7 @@ html {
 .node,
 html,
 button {
-  font-family:
-    "Helvetica",
-    "Arial",
-    sans-serif
-    !important;
+  font-family: "Helvetica", "Arial", sans-serif !important;
 }
 
 .node {
@@ -51,43 +53,38 @@ h1 {
   font-size: 120%;
   margin: 2px;
   margin-bottom: 5px;
-  padding: 0px;
+  padding: 0;
   text-align: center;
 }
 
 body {
+  display: flex;
+  flex-flow: column nowrap;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   text-align: center;
-  margin: 0px;
+  margin: 0;
 }
 
 #container div {
   padding: 12px;
-
   border-radius: 2px;
-
-  text-align: left;
-
   display: inline-block;
+}
 
+.node {
+  text-align: left;
   max-width: 800px;
+  margin: 0 auto;
 }
 
 #container {
   text-align: center;
-
   display: block;
-
-  position: fixed;
-
-  left:    0px;
-  right:   0px;
-  top:    42px;
-  bottom: 40px;
-
   overflow-y: auto;
-
-  z-index: 10;
-
   background: #f4f4f4;
 }
 
@@ -132,38 +129,35 @@ body {
 
 #footer a {
   text-decoration: none;
-  color: #888;
-
+  color: rgba(255, 255, 255, 0.70);
+  cursor: pointer;
   display: inline-block;
-}
-
-#footer,
-#nav-bar {
-  position: fixed;
-  left:  0px;
-  right: 0px;
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.10);
+  padding: 10px;
 }
 
 #nav-bar {
-  top: 0px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 0 10px rgba(0, 0, 0, 0.10);
 }
 
 #footer {
-  bottom: 0px;
-  padding: 8px 1em 12px;
+  cursor: default;
+  padding: 0;
+  background: #424242;
+  box-shadow: 0 0 8px 2px #f4f4f4;
 }
 
+#footer a:focus,
 #footer a:hover {
-  color: #000;
-  cursor: pointer;
+  color: #fff;
   text-decoration: underline;
 }
 
 .separator {
-  margin: 0px 10px;
+  margin: 0 10px;
   display: inline-block;
-  color: #ddd;
+  color: #ccc;
   cursor: default;
 }
 
@@ -175,49 +169,85 @@ body {
   display: block;
   padding: 6px 12px 9px;
   border: 1px solid transparent;
-  border-radius: 0px;
+  border-radius: 0;
 }
 
+.node:focus,
+.node:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.node:focus .title,
 .node:hover .title {
-  color: #729fcf;
+  color: #2196F3;
   text-decoration: underline;
 }
 
 #nav-bar {
-  padding: 0px;
-  margin: 0px;
+  padding: 0 10px;
+  margin: 0;
+}
+
+#bookmarks,
+#others,
+#top-sites {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-y: auto;
 }
 
 #nav-bar button {
-  margin: 1px 6px 1px 6px;
+  margin: 0;
 
-  padding: 10px 20px 5px;
-
-  height: 40px;
+  padding: 15px 25px;
 
   background-color: transparent;
+  cursor: pointer;
 
   font-size: 100%;
 
   border: none;
-  border-bottom: 5px solid transparent;
+  border-bottom: 3px solid transparent;
 
   color: #666;
   text-decoration: none;
   display: inline-block;
+  text-transform: uppercase;
+  font-size: 85%;
+  font-weight: 600;
 }
 
 #nav-bar button.current,
+#nav-bar button.current:focus,
 #nav-bar button.current:hover {
-  color: #000;
-  border-color: #777;
+  color: #2196F3;
+  border-color: currentColor;
 }
 
+#nav-bar button {
+  transition: 100ms ease background;
+}
+
+#nav-bar button:active {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+#nav-bar button:focus,
 #nav-bar button:hover {
-  cursor: pointer;
-  border-color: #ccc;
+  color: #000;
 }
 
 .empty-message {
   color: #aaa;
 }
+
+#footer a {
+}
+
+#footer a + a {
+  margin-left: 8px;
+}
+
