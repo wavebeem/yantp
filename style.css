@@ -97,8 +97,8 @@ body {
   text-overflow: ellipsis;
 }
 
-.node:not(:last-child) {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+.node:last-child {
+  border-bottom: 0;
 }
 
 .favicon {
@@ -168,7 +168,7 @@ body {
 .node {
   display: block;
   padding: 6px 12px 9px;
-  border: 1px solid transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 0;
 }
 
@@ -251,3 +251,29 @@ body {
   margin-left: 8px;
 }
 
+@media (max-width: 500px) {
+  #nav-bar {
+    padding: 0;
+  }
+
+  #nav-bar button {
+    display: block;
+    width: 100%;
+    border-bottom: 0;
+    border-left: 3px solid transparent;
+    text-align: left;
+  }
+
+  #nav-bar button.current {
+    border-left-color: #2196F3;
+  }
+
+  #footer a {
+    display: block;
+    text-align: left;
+  }
+
+  #footer a + a {
+    margin: 0;
+  }
+}
