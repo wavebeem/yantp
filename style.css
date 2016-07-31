@@ -146,8 +146,8 @@ body {
 #footer {
   cursor: default;
   padding: 0;
-  background: #e0e0e0;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+  background: #e8e8e8;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.10);
 }
 
 #footer a:focus,
