@@ -2,6 +2,7 @@ html {
   background-color: #fff;
   color: #444;
   text-align: center;
+  --blue: #2196f3;
 }
 
 /* TODO: Ugh, please stop doing this */
@@ -27,9 +28,6 @@ html {
   position: relative;
 }
 
-#nav-bar {
-}
-
 #footer > * {
   vertical-align: middle;
 }
@@ -37,7 +35,18 @@ html {
 .node,
 html,
 button {
-  font-family: "Helvetica", "Arial", sans-serif !important;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
 }
 
 .node {
@@ -126,14 +135,18 @@ body {
   vertical-align: middle;
 }
 
-#footer a {
+#footer button {
+  -webkit-appearance: none;
+  border: 0;
   text-decoration: none;
   color: #444;
+  background: transparent;
   cursor: pointer;
   display: inline-block;
   padding: 20px 10px;
   font-size: 12px;
   font-weight: 500;
+  font-family: inherit;
   text-transform: uppercase;
 }
 
@@ -150,10 +163,9 @@ body {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.10);
 }
 
-#footer a:focus,
-#footer a:hover {
+#footer button:focus,
+#footer button:hover {
   color: #000;
-  text-decoration: underline;
 }
 
 .separator {
@@ -174,15 +186,11 @@ body {
   border-radius: 0;
 }
 
-.node:focus,
-.node:hover {
-  background: rgba(0, 0, 0, 0.02);
-}
-
 .node:focus .title,
 .node:hover .title {
-  color: #2196F3;
-  text-decoration: underline;
+  color: var(--blue);
+  box-shadow: 0 1px 0 var(--blue);
+  padding-bottom: 1px;
 }
 
 #nav-bar {
@@ -219,7 +227,7 @@ body {
 #nav-bar button.current,
 #nav-bar button.current:focus,
 #nav-bar button.current:hover {
-  color: #2196F3;
+  color: var(--blue);
   border-color: currentColor;
 }
 
@@ -240,7 +248,7 @@ body {
   color: #aaa;
 }
 
-#footer a + a {
+#footer button + button {
   margin-left: 8px;
 }
 
@@ -258,15 +266,15 @@ body {
   }
 
   #nav-bar button.current {
-    border-left-color: #2196F3;
+    border-left-color: var(--blue);
   }
 
-  #footer a {
+  #footer button {
     display: block;
     text-align: left;
   }
 
-  #footer a + a {
+  #footer button + button {
     margin: 0;
   }
 }

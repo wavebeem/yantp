@@ -1,6 +1,8 @@
+/* global chrome */
+
 function throttle(time, fn) {
   let lastRun = Date.now();
-  return function() {
+  return () => {
     const now = Date.now();
     const delta = now - lastRun;
     if (delta >= time) {
@@ -26,8 +28,8 @@ function listen(obj, name, cb, capture) {
 function img(url) {
   var elem = document.createElement('span');
   var backgroundImage = '-webkit-image-set(' + [
-      'url(chrome://favicon/size/16@1x/' + url + ') 1x',
-      'url(chrome://favicon/size/16@2x/' + url + ') 2x'
+    'url(chrome://favicon/size/16@1x/' + url + ') 1x',
+    'url(chrome://favicon/size/16@2x/' + url + ') 2x'
   ].join(', ') + ')';
   elem.style.backgroundImage = backgroundImage;
   elem.className = 'image';
@@ -42,14 +44,6 @@ function favicon(url) {
   return elem;
 }
 
-function link(title, url) {
-  var elem = document.createElement('a');
-  elem.href = url;
-  elem.appendChild(favicon(url));
-  appendText(elem, title);
-  return elem;
-}
-
 function title(title) {
   var elem = document.createElement('span');
   elem.className = 'title';
@@ -58,12 +52,14 @@ function title(title) {
 }
 
 function walkBookmarks(node, callback, path) {
-  if (!node) { return; }
+  if (!node) {
+    return;
+  }
 
   if (node.url) {
     callback(node, path);
   } else if (node.children) {
-    node.children.forEach(function(child) {
+    node.children.forEach(child => {
       walkBookmarks(child, callback, (path || []).concat(node.title));
     });
   } else {
@@ -75,7 +71,7 @@ function generatePath(path) {
   var elem = document.createElement('span');
   elem.className = 'path';
 
-  path.forEach(function(chunk, i) {
+  path.forEach(chunk => {
     var chunkElem = document.createElement('span');
     var sepElem = document.createElement('span');
 
@@ -113,8 +109,8 @@ function render() {
   }
 
   tabs['top-sites'].innerHTML = '';
-  chrome.topSites.get(function(sites) {
-    sites.forEach(function(site) {
+  chrome.topSites.get(sites => {
+    sites.forEach(site => {
       tabs['top-sites'].appendChild(generateLink(site));
     });
   });
@@ -127,19 +123,19 @@ function emptyMessage() {
   var elem = document.createElement('p');
   elem.className = 'empty-message';
   elem.appendChild(document.createTextNode(
-      'This is where bookmarks would go, if you had any'
+    'This is where bookmarks would go, if you had any'
   ));
   return elem;
 }
 
 function renderBookmarksSubtreeByIdInto(bookmarkId, rootElem) {
   rootElem.innerHTML = '';
-  chrome.bookmarks.getSubTree(bookmarkId, function(nodes) {
+  chrome.bookmarks.getSubTree(bookmarkId, nodes => {
     if (nodes[0].children.length === 0) {
       rootElem.appendChild(emptyMessage());
     } else {
-      nodes[0].children.forEach(function(node) {
-        walkBookmarks(node, function(bookmark, path) {
+      nodes[0].children.forEach(node => {
+        walkBookmarks(node, (bookmark, path) => {
           var elem = generateLink(bookmark, path);
           rootElem.appendChild(elem);
         });
@@ -147,11 +143,6 @@ function renderBookmarksSubtreeByIdInto(bookmarkId, rootElem) {
     }
   });
 }
-
-var bookmarkIds = {
-  all: '2',
-  bar: '1',
-};
 
 var tabHandlers = {};
 
@@ -163,19 +154,19 @@ var tabs = {
 
 var has = Object.prototype.hasOwnProperty;
 
-var eachPair = function(obj, callback) {
+function eachPair(obj, callback) {
   for (var k in obj) {
     if (has.call(obj, k)) {
       callback(obj, k, obj[k]);
     }
   }
-};
+}
 
-eachPair(tabs, function(_obj, k, v) {
-  tabHandlers[k] = function() {
-    localStorage.last_tab = k;
+eachPair(tabs, (_obj, k) => {
+  tabHandlers[k] = () => {
+    localStorage.setItem('last_tab', k);
 
-    eachPair(tabs, function(_obj, k2, v2) {
+    eachPair(tabs, (_obj, k2) => {
       ID('show-' + k2).classList.remove('current');
       tabs[k2].style.display = 'none';
     });
@@ -186,7 +177,7 @@ eachPair(tabs, function(_obj, k, v) {
 });
 
 function newTabOpener(url) {
-  return function(event) {
+  return event => {
     chrome.tabs.create({url});
     window.close();
     if (event) {
@@ -195,12 +186,10 @@ function newTabOpener(url) {
   };
 }
 
-localStorage.last_tab = localStorage.last_tab || 'bookmarks';
-
-listen(window, 'DOMContentLoaded', function(event) {
-  eachPair(tabs, function(obj, k, v) {
+listen(window, 'DOMContentLoaded', () => {
+  eachPair(tabs, (obj, k) => {
     obj[k] = ID(k);
-    listen(ID('show-' + k), 'click', function(event) {
+    listen(ID('show-' + k), 'click', event => {
       event.preventDefault();
       tabHandlers[k]();
     });
@@ -212,12 +201,12 @@ listen(window, 'DOMContentLoaded', function(event) {
     ID('go-to-extensions'),
   ];
 
-  newTabLinks.forEach(function(link) {
-    link.onclick = newTabOpener(link.href);
+  newTabLinks.forEach(link => {
+    link.onclick = newTabOpener(link.dataset.href);
   });
 
   // Restore last focused tab
-  var tab = localStorage.last_tab || 'bookmarks';
+  var tab = localStorage.getItem('last_tab') || 'bookmarks';
   var fun = tabHandlers[tab];
   if (fun) {
     fun();
