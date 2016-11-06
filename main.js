@@ -13,10 +13,6 @@ function throttle(time, fn) {
   };
 }
 
-function appendText(elem, text) {
-  elem.appendChild(document.createTextNode(text));
-}
-
 function ID(id) {
   return document.getElementById(id);
 }
@@ -25,37 +21,60 @@ function listen(obj, name, cb, capture) {
   obj.addEventListener(name, cb, !!capture);
 }
 
-function img(url) {
-  var elem = document.createElement('span');
-  var backgroundImage = '-webkit-image-set(' + [
-    'url(chrome://favicon/size/16@1x/' + url + ') 1x',
-    'url(chrome://favicon/size/16@2x/' + url + ') 2x'
-  ].join(', ') + ')';
-  elem.style.backgroundImage = backgroundImage;
-  elem.className = 'image';
+function E(type, props, children) {
+  children = children || [];
+  const elem = document.createElement(type);
+  Object.keys(props).forEach(k => {
+    if (k === 'style') {
+      Object.assign(elem.style, props[k]);
+    } else {
+      elem[k] = props[k];
+    }
+  });
+  children
+    .map(asNode)
+    .filter(x => x !== null)
+    .forEach(kid => {
+      elem.appendChild(kid);
+    });
   return elem;
+}
+
+function asNode(x) {
+  if (typeof x === 'string') {
+    return document.createTextNode(x);
+  } else {
+    return x;
+  }
+}
+
+function faviconImageSet(url) {
+  return `
+    -webkit-image-set(
+      url(chrome://favicon/size/16@1x/${url}) 1x,
+      url(chrome://favicon/size/16@2x/${url}) 2x)
+  `;
+}
+
+function img(url) {
+  return E('span', {
+    className: 'image',
+    style: {backgroundImage: faviconImageSet(url)}
+  }, []);
 }
 
 function favicon(url) {
-  var elem = document.createElement('span');
-  var image = img(url);
-  elem.className = 'favicon';
-  elem.appendChild(image);
-  return elem;
+  return E('span', {className: 'favicon'}, [img(url)]);
 }
 
 function title(title) {
-  var elem = document.createElement('span');
-  elem.className = 'title';
-  appendText(elem, title);
-  return elem;
+  return E('span', {className: 'title'}, [title]);
 }
 
 function walkBookmarks(node, callback, path) {
   if (!node) {
     return;
   }
-
   if (node.url) {
     callback(node, path);
   } else if (node.children) {
@@ -68,53 +87,33 @@ function walkBookmarks(node, callback, path) {
 }
 
 function generatePath(path) {
-  var elem = document.createElement('span');
-  elem.className = 'path';
-
-  path.forEach(chunk => {
-    var chunkElem = document.createElement('span');
-    var sepElem = document.createElement('span');
-
-    chunkElem.className = 'chunk';
-    sepElem.className = 'separator';
-
-    appendText(chunkElem, chunk);
-    appendText(sepElem, ' / ');
-
-    elem.appendChild(chunkElem);
-    elem.appendChild(sepElem);
-  });
-
-  return elem;
+  const twins = path.map(chunk => [
+    E('span', {className: 'chunk'}, [chunk]),
+    E('span', {className: 'separator'}, [' / '])
+  ]);
+  const kids = twins.reduce((a, b) => a.concat(b));
+  return E('span', {className: 'path'}, kids);
 }
 
 function generateLink(site, path) {
-  var elem;
-
-  elem = document.createElement('a');
-  elem.className = 'node top-site';
-  elem.appendChild(favicon(site.url));
-  if (path) {
-    elem.appendChild(generatePath(path));
-  }
-  elem.appendChild(title(site.title));
-  elem.href = site.url;
-
-  return elem;
+  const kids = [
+    favicon(site.url),
+    path ? generatePath(path) : null,
+    title(site.title)
+  ];
+  return E('a', {className: 'node top-site', href: site.url}, kids);
 }
 
 function render() {
   if (!tabs['top-sites'] || !tabs.bookmarks || !tabs.others) {
     return;
   }
-
   tabs['top-sites'].innerHTML = '';
   chrome.topSites.get(sites => {
     sites.forEach(site => {
       tabs['top-sites'].appendChild(generateLink(site));
     });
   });
-
   renderBookmarksSubtreeByIdInto('1', tabs.bookmarks);
   renderBookmarksSubtreeByIdInto('2', tabs.others);
 }
@@ -152,25 +151,17 @@ var tabs = {
   others: null,
 };
 
-var has = Object.prototype.hasOwnProperty;
-
 function eachPair(obj, callback) {
-  for (var k in obj) {
-    if (has.call(obj, k)) {
-      callback(obj, k, obj[k]);
-    }
-  }
+  Object.keys(obj).forEach(k => callback(obj, k, obj[k]));
 }
 
 eachPair(tabs, (_obj, k) => {
   tabHandlers[k] = () => {
     localStorage.setItem('last_tab', k);
-
     eachPair(tabs, (_obj, k2) => {
       ID('show-' + k2).classList.remove('current');
       tabs[k2].style.display = 'none';
     });
-
     ID('show-' + k).classList.add('current');
     tabs[k].style.display = 'inline-block';
   };
@@ -194,28 +185,22 @@ listen(window, 'DOMContentLoaded', () => {
       tabHandlers[k]();
     });
   });
-
   var newTabLinks = [
     ID('edit-bookmarks'),
     ID('go-to-apps'),
     ID('go-to-extensions'),
   ];
-
   newTabLinks.forEach(link => {
     link.onclick = newTabOpener(link.dataset.href);
   });
-
   // Restore last focused tab
   var tab = localStorage.getItem('last_tab') || 'bookmarks';
   var fun = tabHandlers[tab];
   if (fun) {
     fun();
   }
-
   render();
-
   var throttledRender = throttle(200, render);
-
   // Re-render on all bookmarks update events
   Object.keys(chrome.bookmarks)
     .filter(name => name.indexOf('on') === 0)
