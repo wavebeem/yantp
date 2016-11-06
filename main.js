@@ -101,7 +101,7 @@ function generateLink(site, path) {
     path ? generatePath(path) : null,
     title(site.title)
   ];
-  return E('a', {className: 'node top-site', href: site.url}, kids);
+  return E('a', {className: 'node', href: site.url}, kids);
 }
 
 function render() {
