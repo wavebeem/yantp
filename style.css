@@ -150,6 +150,7 @@ body {
   text-transform: uppercase;
 }
 
+#footer,
 #nav-bar {
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.05),
@@ -159,8 +160,7 @@ body {
 #footer {
   cursor: default;
   padding: 0;
-  background: #e8e8e8;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.10);
+  background: #fff;
 }
 
 #footer button:focus,
