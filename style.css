@@ -99,22 +99,22 @@ body {
 
 .node,
 .node:visited {
-  color: #888;
+  color: black;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.node:last-child {
-  border-bottom: 0;
+.node:first-child {
+  box-shadow: none;
 }
 
 .favicon {
   margin-right: 9px;
   background-color: #fff;
   padding: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.20);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   display: inline-block;
 }
@@ -127,7 +127,7 @@ body {
 }
 
 .title {
-  color: #444;
+  color: inherit;
 }
 
 .title,
@@ -182,16 +182,29 @@ body {
 
 .node {
   display: block;
-  padding: 6px 12px 9px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 0;
+  padding: 8px 12px 10px;
+  border-radius: 2px;
+}
+
+.node .chunk {
+  color: #888;
 }
 
 .node:focus .title,
 .node:hover .title {
-  color: var(--blue);
-  box-shadow: 0 1px 0 var(--blue);
-  padding-bottom: 1px;
+  color: inherit;
+}
+
+.node:focus .separator,
+.node:hover .separator {
+  font-weight: normal;
+}
+
+.node:focus,
+.node:hover {
+  background: #e8e8e8;
+  color: black;
+  box-shadow: 0 0 0 1px #e0e0e0;
 }
 
 #nav-bar {
@@ -238,7 +251,7 @@ body {
 }
 
 #nav-bar button {
-  transition: 100ms ease background;
+  transition: 100ms ease background-color;
 }
 
 #nav-bar button:active {
@@ -273,6 +286,15 @@ body {
 
   #nav-bar button.current {
     border-left-color: var(--blue);
+  }
+
+  #nav-bar button,
+  #nav-bar button:focus,
+  #nav-bar button:hover,
+  #nav-bar button.current,
+  #nav-bar button.current:focus,
+  #nav-bar button.current:hover {
+    box-shadow: none;
   }
 
   #footer button {
