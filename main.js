@@ -59,17 +59,17 @@ function faviconImageSet(url) {
 
 function img(url) {
   return E('span', {
-    className: 'image',
+    className: 'FaviconImage',
     style: {backgroundImage: faviconImageSet(url)}
   }, []);
 }
 
 function favicon(url) {
-  return E('span', {className: 'favicon'}, [img(url)]);
+  return E('span', {className: 'Favicon va-middle'}, [img(url)]);
 }
 
 function title(title) {
-  return E('span', {className: 'title'}, [title]);
+  return E('span', {className: 'va-middle'}, [title]);
 }
 
 function walkBookmarks(node, callback, path) {
@@ -89,11 +89,11 @@ function walkBookmarks(node, callback, path) {
 
 function generatePath(path) {
   const twins = path.map(chunk => [
-    E('span', {className: 'chunk'}, [chunk]),
-    E('span', {className: 'separator'}, [' / '])
+    E('span', {className: 'gray'}, [chunk]),
+    E('span', {className: 'light-gray'}, [' / '])
   ]);
   const kids = twins.reduce((a, b) => a.concat(b));
-  return E('span', {className: 'path'}, kids);
+  return E('span', {className: 'va-middle'}, kids);
 }
 
 function generateLink(site, path) {
@@ -102,7 +102,7 @@ function generateLink(site, path) {
     path ? generatePath(path) : null,
     title(site.title)
   ];
-  return E('a', {className: 'node', href: site.url}, kids);
+  return E('a', {className: 'Bookmark db reset-link', href: site.url}, kids);
 }
 
 function render() {
@@ -157,11 +157,11 @@ eachPair(tabs, (_obj, k) => {
   tabHandlers[k] = () => {
     localStorage.setItem('last_tab', k);
     eachPair(tabs, (_obj, k2) => {
-      ID('show-' + k2).classList.remove('current');
+      ID('show-' + k2).classList.remove('is-current');
       tabs[k2].style.display = 'none';
     });
-    ID('show-' + k).classList.add('current');
-    tabs[k].style.display = 'inline-block';
+    ID('show-' + k).classList.add('is-current');
+    tabs[k].style.display = '';
   };
 });
 
