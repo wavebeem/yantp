@@ -22,6 +22,7 @@ function listen(obj, name, cb, capture) {
 }
 
 function E(type, props, children) {
+  props = props || {};
   children = children || [];
   const elem = document.createElement(type);
   Object.keys(props).forEach(k => {
@@ -119,12 +120,9 @@ function render() {
 }
 
 function emptyMessage() {
-  var elem = document.createElement('p');
-  elem.className = 'empty-message';
-  elem.appendChild(document.createTextNode(
+  return E('p', {className: 'empty-message'}, [
     'This is where bookmarks would go, if you had any'
-  ));
-  return elem;
+  ]);
 }
 
 function renderBookmarksSubtreeByIdInto(bookmarkId, rootElem) {
@@ -135,7 +133,7 @@ function renderBookmarksSubtreeByIdInto(bookmarkId, rootElem) {
     } else {
       nodes[0].children.forEach(node => {
         walkBookmarks(node, (bookmark, path) => {
-          var elem = generateLink(bookmark, path);
+          const elem = generateLink(bookmark, path);
           rootElem.appendChild(elem);
         });
       });
@@ -143,9 +141,9 @@ function renderBookmarksSubtreeByIdInto(bookmarkId, rootElem) {
   });
 }
 
-var tabHandlers = {};
+const tabHandlers = {};
 
-var tabs = {
+const tabs = {
   bookmarks: null,
   'top-sites': null,
   others: null,
@@ -185,7 +183,7 @@ listen(window, 'DOMContentLoaded', () => {
       tabHandlers[k]();
     });
   });
-  var newTabLinks = [
+  const newTabLinks = [
     ID('edit-bookmarks'),
     ID('go-to-apps'),
     ID('go-to-extensions'),
@@ -194,13 +192,13 @@ listen(window, 'DOMContentLoaded', () => {
     link.onclick = newTabOpener(link.dataset.href);
   });
   // Restore last focused tab
-  var tab = localStorage.getItem('last_tab') || 'bookmarks';
-  var fun = tabHandlers[tab];
+  const tab = localStorage.getItem('last_tab') || 'bookmarks';
+  const fun = tabHandlers[tab];
   if (fun) {
     fun();
   }
   render();
-  var throttledRender = throttle(200, render);
+  const throttledRender = throttle(200, render);
   // Re-render on all bookmarks update events
   Object.keys(chrome.bookmarks)
     .filter(name => name.indexOf('on') === 0)
