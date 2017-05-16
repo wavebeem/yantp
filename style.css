@@ -182,8 +182,10 @@ body {
 
 .node {
   display: block;
-  padding: 8px 12px 10px;
+  padding: 6px 12px;
   border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
 .node .chunk {
@@ -195,15 +197,14 @@ body {
   color: inherit;
 }
 
-.node:focus .separator,
-.node:hover .separator {
-  font-weight: normal;
-}
-
-.node:focus,
 .node:hover {
   background: #e8e8e8;
   color: black;
+}
+
+.node:focus {
+  outline: 3px solid #ccc;
+  outline-offset: -6px;
 }
 
 #nav-bar {
