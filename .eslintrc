@@ -12,7 +12,6 @@
     "indent": ["warn", 2],
     "key-spacing": "warn",
     "keyword-spacing": "warn",
-    "linebreak-style": ["error", "unix"],
     "no-alert": "error",
     "no-caller": "error",
     "no-eval": "error",

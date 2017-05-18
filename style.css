@@ -21,6 +21,7 @@ body {
   color: inherit;
 }
 
+.z-1 { z-index: 1; }
 .b { font-weight: bold; }
 .flex { display: flex; }
 .flex-column { flex-flow: column; }
@@ -49,9 +50,15 @@ body {
     "Helvetica Neue",
     sans-serif;
 }
+.fancy-shadow {
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 0 10px rgba(0, 0, 0, 0.2);
+}
 
 .Bookmark {
   padding: 8px;
+  padding-bottom: 10px;
   border-radius: 4px;
   overflow: hidden;
   white-space: nowrap;
@@ -83,9 +90,6 @@ body {
   overflow-y: auto;
   font-size: 18px;
   padding: 16px;
-  border: 1px solid #ddd;
-  border-left: 0;
-  border-right: 0;
 }
 
 .BookmarksPage {
