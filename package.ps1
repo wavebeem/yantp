@@ -5,4 +5,4 @@ $files = @(
   "*.css"
   "manifest.json"
 )
-Compress-Archive $files -Force -DestinationPath yantp.zip
+Compress-Archive $files -Force -DestinationPath ../yantp.zip
