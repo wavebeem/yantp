@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "version": "19.0",
+  "version": "20.0",
   "name": "Yet Another New Tab Page",
   "short_name": "yantp",
   "icons": {

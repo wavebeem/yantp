@@ -1,5 +1,3 @@
-/* global chrome */
-
 function throttle(time, fn) {
   let lastRun = Date.now();
   return () => {
@@ -120,7 +118,7 @@ function render() {
 }
 
 function emptyMessage() {
-  return E('p', {className: 'empty-message'}, [
+  return E('p', {className: 'tc gray'}, [
     'This is where bookmarks would go, if you had any'
   ]);
 }
