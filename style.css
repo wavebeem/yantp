@@ -21,39 +21,58 @@ body {
   color: inherit;
 }
 
-.z-1 { z-index: 1; }
-.b { font-weight: bold; }
-.flex { display: flex; }
-.flex-column { flex-flow: column; }
-.flex-auto { flex: 1 1 auto; }
-.min-100vh { min-height: 100vh; }
-.db { display: block; }
-.gray { color: #888; }
-.light-gray { color: #ccc; }
-.bg-light-gray { background-color: #f4f4f4; }
-.bg-white { background-color: white; }
-.ttu { text-transform: uppercase; }
-.tc { text-align: center; }
-.justify-center { justify-content: center; }
-.va-middle { vertical-align: middle; }
+.z-1 {
+  z-index: 1;
+}
+.b {
+  font-weight: bold;
+}
+.flex {
+  display: flex;
+}
+.flex-column {
+  flex-flow: column;
+}
+.flex-auto {
+  flex: 1 1 auto;
+}
+.min-100vh {
+  min-height: 100vh;
+}
+.db {
+  display: block;
+}
+.gray {
+  color: #888;
+}
+.light-gray {
+  color: #ccc;
+}
+.bg-light-gray {
+  background-color: #f4f4f4;
+}
+.bg-white {
+  background-color: white;
+}
+.ttu {
+  text-transform: uppercase;
+}
+.tc {
+  text-align: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.va-middle {
+  vertical-align: middle;
+}
 .sans-serif {
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    "Roboto",
-    "Oxygen",
-    "Ubuntu",
-    "Cantarell",
-    "Fira Sans",
-    "Droid Sans",
-    "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 }
 .fancy-shadow {
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.05),
-    0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .Bookmark {
@@ -83,6 +102,10 @@ body {
   width: 16px;
   height: 16px;
   display: block;
+}
+
+.IS_FIREFOX .BottomBar {
+  display: none;
 }
 
 .Bookmarks {

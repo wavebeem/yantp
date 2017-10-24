@@ -1,53 +1,44 @@
 <!DOCTYPE html>
 <!-- Copyright © 2013-2017 Brian Mock <brian@mockbrian.com> -->
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>New Tab</title>
-    <link rel="icon" href="favicon.png">
-    <link rel="stylesheet" href="style.css">
-    <script src="main.js"></script>
-  </head>
-  <body class="flex flex-column min-100vh bg-white sans-serif">
-    <div class="flex justify-center z-1 fancy-shadow">
-      <button class="Tab reset-button b ttu" id="show-bookmarks">
-        Bookmarks bar
-      </button>
-      <button class="Tab reset-button b ttu" id="show-others">
-        Other bookmarks
-      </button>
-      <button class="Tab reset-button b ttu" id="show-top-sites">
-        Top sites
-      </button>
-    </div>
-    <div class="Bookmarks bg-light-gray flex-auto">
-      <div class="BookmarksPage flex flex-column" id="bookmarks"></div>
-      <div class="BookmarksPage flex flex-column" id="others"></div>
-      <div class="BookmarksPage flex flex-column" id="top-sites"></div>
-    </div>
-    <div class="flex justify-center z-1 fancy-shadow">
-      <button
-        class="FooterButton reset-button b ttu"
-        data-href="chrome://bookmarks"
-        id="edit-bookmarks"
-      >
-        Bookmark manager
-      </button>
-      <button
-        class="FooterButton reset-button b ttu"
-        data-href="chrome://apps"
-        id="go-to-apps"
-      >
-        Apps
-      </button>
-      <button
-        class="FooterButton reset-button b ttu"
-        data-href="chrome://extensions"
-        id="go-to-extensions"
-      >
-        Extensions
-      </button>
-    </div>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>New Tab</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js"></script>
+</head>
+
+<body class="flex flex-column min-100vh bg-white sans-serif">
+  <div class="flex justify-center z-1 fancy-shadow">
+    <button class="Tab reset-button b ttu" id="show-bookmarks">
+      Bookmarks bar
+    </button>
+    <button class="Tab reset-button b ttu" id="show-others">
+      Other bookmarks
+    </button>
+    <button class="Tab reset-button b ttu" id="show-top-sites">
+      Top sites
+    </button>
+  </div>
+  <div class="Bookmarks bg-light-gray flex-auto">
+    <div class="BookmarksPage flex flex-column" id="bookmarks"></div>
+    <div class="BookmarksPage flex flex-column" id="others"></div>
+    <div class="BookmarksPage flex flex-column" id="top-sites"></div>
+  </div>
+  <div class="BottomBar flex justify-center z-1 fancy-shadow">
+    <button class="FooterButton reset-button b ttu" data-href="chrome://bookmarks" id="edit-bookmarks">
+      Bookmark manager
+    </button>
+    <button class="FooterButton reset-button b ttu" data-href="chrome://apps" id="go-to-apps">
+      Apps
+    </button>
+    <button class="FooterButton reset-button b ttu" data-href="chrome://extensions" id="go-to-extensions">
+      Extensions
+    </button>
+  </div>
+</body>
+
 </html>
